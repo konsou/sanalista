@@ -1,0 +1,2 @@
+# sanalista
+Kotuksen sanalista
