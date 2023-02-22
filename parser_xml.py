@@ -27,6 +27,9 @@ for xml_file in xml_files:
     print(f"New words found: {len(new_words)}")
     words += new_words
 
+print(f"Removing duplicates")
+words = list(set(words))
+
 print(f"Processing complete, writing {len(words)} words to {OUTPUT_FILE}")
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
     f.writelines(sorted(words))
