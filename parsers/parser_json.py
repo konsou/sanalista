@@ -1,8 +1,8 @@
 import json
 import re
 
-INPUT_FILE = "kotus-sanalista_v1.xml"
-OUTPUT_FILE = "kotus-sanalista.json"
+INPUT_FILE = "../kotus-sanalista_v1.xml"
+OUTPUT_FILE = "../kotus-sanalista.json"
 MATCH_STRING = r"(?<=<s>).*(?=<\/s>)"  # match everything between <s> and </s>
 
 with open(INPUT_FILE, encoding="utf-8") as f:

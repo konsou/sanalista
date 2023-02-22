@@ -1,8 +1,8 @@
 import os
 import xml.etree.ElementTree as ET
 
-INPUT_FILE_DIRECTORY = "murre"
-OUTPUT_FILE = "kotus-sanalista-murre.txt"
+INPUT_FILE_DIRECTORY = "../murre"
+OUTPUT_FILE = "../kotus-sanalista-murre.txt"
 
 xml_files = []
 for root, dirs, files in os.walk(INPUT_FILE_DIRECTORY, topdown=False):

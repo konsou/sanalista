@@ -1,7 +1,7 @@
 import re
 
-INPUT_FILE = "kotus-sanalista_v1.xml"
-OUTPUT_FILE = "kotus-sanalista.txt"
+INPUT_FILE = "../kotus-sanalista_v1.xml"
+OUTPUT_FILE = "../kotus-sanalista.txt"
 MATCH_STRING = r"(?<=<s>).*(?=<\/s>)"  # match everything between <s> and </s>
 
 with open(INPUT_FILE, encoding="utf-8") as f:
