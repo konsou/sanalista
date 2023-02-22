@@ -1,8 +1,10 @@
+import json
 import os
 import xml.etree.ElementTree as ET
 
 INPUT_FILE_DIRECTORY = "../murre"
-OUTPUT_FILE = "../kotus-sanalista-murre.txt"
+OUTPUT_FORMAT = "json"  # json or txt
+OUTPUT_FILE = f"../kotus-sanalista-murre.{OUTPUT_FORMAT}"
 
 xml_files = []
 for root, dirs, files in os.walk(INPUT_FILE_DIRECTORY, topdown=False):
@@ -21,15 +23,20 @@ for xml_file in xml_files:
     for dict_entry in root.findall('DictionaryEntry'):
         headword_container = dict_entry.find('HeadwordCtn')
         headword = headword_container.find('Headword')
-        headword_text = headword.text.replace("|", "") + "\n"
+        possible_newline = "" if OUTPUT_FORMAT == "json" else "\n"
+        headword_text = headword.text.replace("|", "") + possible_newline
         new_words.append(headword_text)
 
     print(f"New words found: {len(new_words)}")
     words += new_words
 
-print(f"Removing duplicates")
+print(f"Removing duplicates and sorting")
 words = list(set(words))
+words = sorted(words)
 
 print(f"Processing complete, writing {len(words)} words to {OUTPUT_FILE}")
 with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-    f.writelines(sorted(words))
+    if OUTPUT_FORMAT == "json":
+        json.dump(words, f, indent=2, ensure_ascii=False)
+    else:
+        f.writelines(words)
